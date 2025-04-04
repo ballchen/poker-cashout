@@ -67,22 +67,22 @@ export default function PlayerList({ players, onUpdateCashOut }: PlayerListProps
            boxShadow: '0 4px 12px var(--shadow)',
            border: '1px solid var(--card-border)'
          }}>
-      <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--primary)' }}>玩家列表</h2>
+      <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-accent)' }}>玩家列表</h2>
       {players.length === 0 ? (
-        <p style={{ color: 'var(--primary-light)' }}>尚未添加玩家</p>
+        <p style={{ color: 'var(--text-lighter)' }}>尚未添加玩家</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
               <tr style={{ borderBottom: '1px solid var(--card-border)' }}>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" 
-                    style={{ color: 'var(--primary-light)' }}>玩家</th>
+                    style={{ color: 'var(--text-accent)' }}>玩家</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" 
-                    style={{ color: 'var(--primary-light)' }}>買入</th>
+                    style={{ color: 'var(--text-accent)' }}>買入</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" 
-                    style={{ color: 'var(--primary-light)' }}>結算</th>
+                    style={{ color: 'var(--text-accent)' }}>結算</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" 
-                    style={{ color: 'var(--primary-light)' }}>盈虧</th>
+                    style={{ color: 'var(--text-accent)' }}>盈虧</th>
               </tr>
             </thead>
             <tbody>
@@ -198,13 +198,13 @@ export default function PlayerList({ players, onUpdateCashOut }: PlayerListProps
                     </tr>
                     {showDetails && (
                       <tr key={`details-${player.id}`} className="animate-fadeIn">
-                        <td colSpan={4} className="px-6 py-2 text-sm" style={{ background: 'rgba(117, 106, 182, 0.1)' }}>
+                        <td colSpan={4} className="px-6 py-2 text-sm" style={{ background: 'rgba(166, 77, 121, 0.1)' }}>
                           <div>
-                            <h4 className="font-medium mb-1" style={{ color: 'var(--primary)' }}>買入詳情：</h4>
+                            <h4 className="font-medium mb-1" style={{ color: 'var(--text-accent)' }}>買入詳情：</h4>
                             <ul className="pl-5 list-disc">
                               {player.buyIns.map((amount, index) => (
                                 <li key={`${player.id}-buyin-${index}`} className="animate-slideIn" style={{ animationDelay: `${index * 0.1}s` }}>
-                                  第{index + 1}次: <span style={{ color: 'var(--primary-light)', fontWeight: 'bold' }}>${amount.toFixed(2)}</span>
+                                  第{index + 1}次: <span style={{ color: 'var(--text-lighter)', fontWeight: 'bold' }}>${amount.toFixed(2)}</span>
                                 </li>
                               ))}
                             </ul>

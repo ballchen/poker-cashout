@@ -225,15 +225,15 @@ export default function Home() {
               <div className="flex justify-between items-center">
                 <div>
                   <p className="text-sm mb-1">
-                    <span style={{ color: 'var(--primary-light)' }}>預設籌碼值: </span>
+                    <span style={{ color: 'var(--text-accent)' }}>預設籌碼值: </span>
                     <span className="font-semibold">${defaultBuyIn.toFixed(2)}</span>
                   </p>
                   <p className="text-sm mb-1">
-                    <span style={{ color: 'var(--primary-light)' }}>總買入: </span>
+                    <span style={{ color: 'var(--text-accent)' }}>總買入: </span>
                     <span className="font-semibold">${totalBuyIn.toFixed(2)}</span>
                   </p>
                   <p className="text-sm">
-                    <span style={{ color: 'var(--primary-light)' }}>總結算: </span>
+                    <span style={{ color: 'var(--text-accent)' }}>總結算: </span>
                     <span className="font-semibold">${totalCashOut.toFixed(2)}</span>
                   </p>
                 </div>

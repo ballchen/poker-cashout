@@ -63,10 +63,10 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
       <div className="flex flex-col md:flex-row gap-6">
         {/* 新玩家表單 */}
         <div className="flex-1">
-          <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--primary)' }}>添加新玩家</h2>
+          <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-accent)' }}>添加新玩家</h2>
           <form onSubmit={handleNewPlayerSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
+              <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-lighter)' }}>
                 玩家名稱
               </label>
               <input
@@ -85,7 +85,7 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
               />
             </div>
             <div>
-              <label htmlFor="buyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
+              <label htmlFor="buyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-lighter)' }}>
                 買入金額 (預設: ${defaultBuyIn})
               </label>
               <input
@@ -122,10 +122,10 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
         {/* 額外買入表單 */}
         {players.length > 0 && (
           <div className="flex-1">
-            <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--secondary)' }}>添加額外買入</h2>
+            <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-accent)' }}>添加額外買入</h2>
             <form onSubmit={handleAdditionalBuyIn} className="space-y-4">
               <div>
-                <label htmlFor="player" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
+                <label htmlFor="player" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-lighter)' }}>
                   選擇玩家
                 </label>
                 <select
@@ -149,7 +149,7 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
                 </select>
               </div>
               <div>
-                <label htmlFor="additionalBuyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
+                <label htmlFor="additionalBuyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-lighter)' }}>
                   額外買入金額 (預設: ${defaultBuyIn})
                 </label>
                 <input
