@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #756AB6;
+  --primary-light: #AC87C5;
+  --secondary: #E0AED0;
+  --background: #FFE5E5;
+  --background-alt: #ffffff;
+  --foreground: #333333;
+  --card-bg: #ffffff;
+  --card-border: rgba(172, 135, 197, 0.3);
+  --shadow: rgba(117, 106, 182, 0.2);
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -14,8 +25,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary: #AC87C5;
+    --primary-light: #756AB6;
+    --secondary: #E0AED0;
+    --background: #2A2A2A;
+    --background-alt: #333333;
+    --foreground: #F5F5F5;
+    --card-bg: #333333;
+    --card-border: rgba(172, 135, 197, 0.5);
+    --shadow: rgba(172, 135, 197, 0.3);
   }
 }
 
@@ -23,4 +41,58 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 基本動畫定義 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* 用於從右側滑入的元素 */
+@keyframes slideIn {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+/* 平滑的過渡效果 */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+/* 卡片懸停效果 */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px var(--shadow);
 }

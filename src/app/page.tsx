@@ -13,6 +13,13 @@ export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isSettled, setIsSettled] = useState(false);
   const [defaultBuyIn, setDefaultBuyIn] = useState<number>(1000); // 預設籌碼值
+  // 添加動畫狀態
+  const [showContent, setShowContent] = useState(false);
+
+  // 頁面加載時的動畫效果
+  useEffect(() => {
+    setShowContent(true);
+  }, []);
 
   // 從本地存儲載入遊戲狀態
   useEffect(() => {
@@ -122,58 +129,94 @@ export default function Home() {
   const totalCashOut = players.reduce((sum, player) => sum + (player.cashOut || 0), 0);
   
   return (
-    <main className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">撲克現金遊戲記賬</h1>
+    <main className="min-h-screen py-8 px-4 sm:px-6 lg:px-8" style={{ background: 'var(--background)' }}>
+      <div className={`max-w-3xl mx-auto ${showContent ? 'animate-fadeIn' : 'opacity-0'}`} style={{ animationDelay: '0.1s' }}>
+        <h1 className="text-3xl font-bold text-center mb-8" style={{ color: 'var(--primary)' }}>撲克現金遊戲記賬</h1>
         
         {isSettled ? (
-          <div className="mb-6 text-center">
+          <div className="mb-6 text-center animate-slideUp" style={{ animationDelay: '0.2s' }}>
             <button
               onClick={handleNewGame}
-              className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="py-2 px-6 rounded-md transition-all hover:scale-105 focus:outline-none focus:ring-2"
+              style={{ 
+                background: 'var(--primary)',
+                color: 'white',
+                boxShadow: '0 4px 6px var(--shadow)'
+              }}
             >
               開始新遊戲
             </button>
           </div>
         ) : (
-          <PlayerForm 
-            onAddPlayer={handleAddPlayer} 
-            onAddBuyIn={handleAddBuyIn}
-            players={players}
-            defaultBuyIn={defaultBuyIn}
-          />
+          <div className="animate-slideUp" style={{ animationDelay: '0.2s' }}>
+            <PlayerForm 
+              onAddPlayer={handleAddPlayer} 
+              onAddBuyIn={handleAddBuyIn}
+              players={players}
+              defaultBuyIn={defaultBuyIn}
+            />
+          </div>
         )}
         
         {players.length > 0 && (
           <>
-            <div className="mb-6 bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
-              <div>
-                <p className="text-sm text-gray-600">預設籌碼值: <span className="font-semibold">${defaultBuyIn.toFixed(2)}</span></p>
-                <p className="text-sm text-gray-600">總買入: <span className="font-semibold">${totalBuyIn.toFixed(2)}</span></p>
-                <p className="text-sm text-gray-600">總結算: <span className="font-semibold">${totalCashOut.toFixed(2)}</span></p>
+            <div className="mb-6 rounded-lg p-4 card-hover animate-slideUp transition-all" 
+                 style={{ 
+                   background: 'var(--card-bg)',
+                   border: '1px solid var(--card-border)',
+                   boxShadow: '0 4px 12px var(--shadow)',
+                   animationDelay: '0.3s'
+                 }}>
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-sm mb-1">
+                    <span style={{ color: 'var(--primary-light)' }}>預設籌碼值: </span>
+                    <span className="font-semibold">${defaultBuyIn.toFixed(2)}</span>
+                  </p>
+                  <p className="text-sm mb-1">
+                    <span style={{ color: 'var(--primary-light)' }}>總買入: </span>
+                    <span className="font-semibold">${totalBuyIn.toFixed(2)}</span>
+                  </p>
+                  <p className="text-sm">
+                    <span style={{ color: 'var(--primary-light)' }}>總結算: </span>
+                    <span className="font-semibold">${totalCashOut.toFixed(2)}</span>
+                  </p>
+                </div>
+                {Math.abs(totalBuyIn - totalCashOut) > 0.01 && (
+                  <p className="text-sm font-medium animate-pulse px-3 py-1 rounded-full" style={{ 
+                    background: 'rgba(224, 174, 208, 0.3)',
+                    color: 'var(--primary)',
+                    border: '1px solid var(--secondary)'
+                  }}>
+                    警告: 金額不一致!
+                  </p>
+                )}
               </div>
-              {Math.abs(totalBuyIn - totalCashOut) > 0.01 && (
-                <p className="text-sm text-yellow-600 font-medium">警告: 總買入和總結算金額不一致!</p>
-              )}
             </div>
             
-            <PlayerList 
-              players={players} 
-              onUpdateCashOut={handleUpdateCashOut} 
-            />
+            <div className="animate-slideUp" style={{ animationDelay: '0.4s' }}>
+              <PlayerList 
+                players={players} 
+                onUpdateCashOut={handleUpdateCashOut} 
+              />
+            </div>
             
             {!isSettled && (
-              <SettlementButton 
-                onSettle={handleSettle} 
-                disabled={!canSettle} 
-              />
+              <div className="animate-slideUp" style={{ animationDelay: '0.5s' }}>
+                <SettlementButton 
+                  onSettle={handleSettle} 
+                  disabled={!canSettle} 
+                />
+              </div>
             )}
             
             {transactions.length > 0 && (
-              <TransactionList 
-                transactions={transactions} 
-                players={players} 
-              />
+              <div className="animate-slideIn" style={{ animationDelay: '0.6s' }}>
+                <TransactionList 
+                  transactions={transactions} 
+                  players={players} 
+                />
+              </div>
             )}
           </>
         )}

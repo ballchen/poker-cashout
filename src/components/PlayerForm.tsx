@@ -54,14 +54,19 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+    <div className="rounded-lg p-6 mb-6 card-hover transition-all" 
+         style={{ 
+           background: 'var(--card-bg)',
+           boxShadow: '0 4px 12px var(--shadow)',
+           border: '1px solid var(--card-border)'
+         }}>
       <div className="flex flex-col md:flex-row gap-6">
         {/* 新玩家表單 */}
         <div className="flex-1">
-          <h2 className="text-lg font-semibold mb-4">添加新玩家</h2>
+          <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--primary)' }}>添加新玩家</h2>
           <form onSubmit={handleNewPlayerSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
                 玩家名稱
               </label>
               <input
@@ -69,13 +74,18 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-md transition-all focus:outline-none focus:ring-2"
+                style={{ 
+                  border: '1px solid var(--card-border)',
+                  backgroundColor: 'var(--background-alt)',
+                  boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)'
+                }}
                 placeholder="輸入玩家名稱"
                 required
               />
             </div>
             <div>
-              <label htmlFor="buyIn" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="buyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
                 買入金額 (預設: ${defaultBuyIn})
               </label>
               <input
@@ -83,7 +93,12 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
                 id="buyIn"
                 value={buyIn || defaultBuyIn}
                 onChange={(e) => setBuyIn(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 rounded-md transition-all focus:outline-none focus:ring-2"
+                style={{ 
+                  border: '1px solid var(--card-border)',
+                  backgroundColor: 'var(--background-alt)',
+                  boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)'
+                }}
                 placeholder={`預設: ${defaultBuyIn}`}
                 min="0"
                 step="0.01"
@@ -92,7 +107,12 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full py-2 px-4 rounded-md transition-all hover:scale-105 focus:outline-none focus:ring-2"
+              style={{ 
+                background: 'var(--primary)',
+                color: 'white',
+                boxShadow: '0 2px 4px var(--shadow)'
+              }}
             >
               添加玩家
             </button>
@@ -102,17 +122,22 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
         {/* 額外買入表單 */}
         {players.length > 0 && (
           <div className="flex-1">
-            <h2 className="text-lg font-semibold mb-4">添加額外買入</h2>
+            <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--secondary)' }}>添加額外買入</h2>
             <form onSubmit={handleAdditionalBuyIn} className="space-y-4">
               <div>
-                <label htmlFor="player" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="player" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
                   選擇玩家
                 </label>
                 <select
                   id="player"
                   value={selectedPlayerId}
                   onChange={(e) => setSelectedPlayerId(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 rounded-md transition-all focus:outline-none focus:ring-2"
+                  style={{ 
+                    border: '1px solid var(--card-border)',
+                    backgroundColor: 'var(--background-alt)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)'
+                  }}
                   required
                 >
                   <option value="">選擇玩家</option>
@@ -124,7 +149,7 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
                 </select>
               </div>
               <div>
-                <label htmlFor="additionalBuyIn" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="additionalBuyIn" className="block text-sm font-medium mb-1" style={{ color: 'var(--primary-light)' }}>
                   額外買入金額 (預設: ${defaultBuyIn})
                 </label>
                 <input
@@ -132,7 +157,12 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
                   id="additionalBuyIn"
                   value={additionalBuyIn || defaultBuyIn}
                   onChange={(e) => setAdditionalBuyIn(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 rounded-md transition-all focus:outline-none focus:ring-2"
+                  style={{ 
+                    border: '1px solid var(--card-border)',
+                    backgroundColor: 'var(--background-alt)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)'
+                  }}
                   placeholder={`預設: ${defaultBuyIn}`}
                   min="0"
                   step="0.01"
@@ -141,7 +171,12 @@ export default function PlayerForm({ onAddPlayer, onAddBuyIn, players, defaultBu
               </div>
               <button
                 type="submit"
-                className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full py-2 px-4 rounded-md transition-all hover:scale-105 focus:outline-none focus:ring-2"
+                style={{ 
+                  background: 'var(--secondary)',
+                  color: 'white',
+                  boxShadow: '0 2px 4px var(--shadow)'
+                }}
               >
                 添加買入
               </button>
